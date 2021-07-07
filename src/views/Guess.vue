@@ -27,7 +27,7 @@ export default {
     'no-item': require('./../components/Shared/NoItem').default    
   },
   mounted () {
-    //por default abre todos os palpites dos últimos 2 dias para frente
+    //por default abre todos os palpites dos últimos 2 dias para frente.
     this.$store.dispatch('getActiveGamesUser',this.$store.state.userStore.loggedUser.id).then(resp=>{
         let games = resp
         let id_game=games[0].id
