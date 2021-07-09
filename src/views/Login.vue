@@ -19,6 +19,7 @@
 
     <v-card-text class="text--primary">
                 <v-text-field
+                    ref="field_email"
                     v-model="form.email"
                     :rules="[rules.required, rules.email]"
                     label="E-mail (usado no cadastro do site)"
@@ -81,6 +82,9 @@ export default {
         absolute: true,
         errorMessage: null
       }
+    },
+    mounted() {
+      this.$refs.field_email.focus()
     },
     methods: {
       login() {

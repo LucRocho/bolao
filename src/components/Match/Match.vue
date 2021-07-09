@@ -127,7 +127,7 @@
 
 <script>
 import { format } from 'date-fns'
-//import { ptBR } from 'date-fns/locale'
+import { ptBR } from 'date-fns/locale'
 //import Util from '../../dataServices/helper/util'
 export default {
   data () {
@@ -139,8 +139,9 @@ export default {
   filters: {
     niceDate (value) {
       const newDate = new Date(value)
-      //return format(newDate, 'd MMM yyyy HH:mm', { locale: ptBR })
-      return format(newDate, 'd MMM yyyy HH:mm')
+      newDate.setHours(newDate.getHours()-2)
+      return format(newDate, 'd MMM yyyy HH:mm', { locale: ptBR })
+      //return format(newDate, 'd MMM yyyy HH:mm')
     }
   },
   components: {
