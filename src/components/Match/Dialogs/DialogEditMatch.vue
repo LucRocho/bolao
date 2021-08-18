@@ -20,7 +20,7 @@
               sm="4">
                 <v-select
                   :items="competitions"
-                  label="Competição*"
+                  label="Competição*-alt"
                   :rules="[rules.required]"
                   item-text="name"
                   item-value="id"
