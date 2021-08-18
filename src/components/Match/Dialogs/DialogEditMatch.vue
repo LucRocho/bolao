@@ -274,6 +274,7 @@ export default {
       this.currentObject = matchCopy
 
       const newDate = new Date(matchCopy.match_datetime)
+      newDate.setHours(newDate.getHours()-2)
       const strDateTime=format(newDate, 'dd/MM/yyyy HH:mm')
       this.dateTime=strDateTime
       

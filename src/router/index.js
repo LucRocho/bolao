@@ -12,6 +12,7 @@ import goTo from 'vuetify/es5/services/goto'
 import store from '../store'
 import Guesses from '../views/Guess.vue'
 import Ranking from '../views/Ranking.vue'
+import Chat from '../views/Chat.vue'
 import Prize from '../views/Prize.vue'
 
 Vue.use(VueRouter)
@@ -85,6 +86,11 @@ const routes = [
     path: '/prize',
     name: 'Prize',
     component: Prize
+  },
+  {
+    path: '/chat',
+    name: 'Chat',
+    component: Chat
   }
 
   
