@@ -111,7 +111,7 @@ export default {
   computed: {
     started: function() {
       const newDate = new Date(this.guess.match_datetime)
-      newDate.setHours(newDate.getHours()-2)
+      newDate.setHours(newDate.getHours()-3)
       return (format(newDate,'yyyy-MM-dd HH:mm')<=format(Date.now(),'yyyy-MM-dd HH:mm'))
     }
     ,
@@ -188,7 +188,7 @@ export default {
   filters: {
     niceDate (value) {
       const newDate = new Date(value)
-      newDate.setHours(newDate.getHours()-2)
+      newDate.setHours(newDate.getHours()-3)
       return format(newDate, 'd MMM yyyy HH:mm', { locale: ptBR })
     }
   },
