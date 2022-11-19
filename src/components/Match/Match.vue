@@ -137,12 +137,14 @@ export default {
   },
   props: ['match','withoutMenu'],
   filters: {
+
     niceDate (value) {
       const newDate = new Date(value)
       newDate.setHours(newDate.getHours()-3)
       return format(newDate, 'd MMM yyyy HH:mm', { locale: ptBR })
       //return format(newDate, 'd MMM yyyy HH:mm')
     }
+    
   },
   components: {
     'match-menu': require('./MatchMenu').default

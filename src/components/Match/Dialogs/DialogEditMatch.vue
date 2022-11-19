@@ -231,9 +231,11 @@ export default {
         this.$store.commit('showSnackbar','Preencha a data e hora da partida')
       }
       if (this.$refs.form.validate() && this.dateTime) {
+
         const newDate = new Date(this.dateTime)
         const strDateTime=format(newDate, 'yyyy-MM-dd HH:mm')
         this.currentObject.match_datetime=strDateTime
+
         let formData=Util.object2FormData(this.currentObject,this.$store.state.userStore.loggedUser.id)
         
         this.$store.dispatch('saveMatch',{ formData: formData, savedMatch: this.currentObject, modeCreate: this.modeCreate})
