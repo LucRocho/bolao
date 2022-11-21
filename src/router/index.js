@@ -101,6 +101,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  //console.log('to.name',to.name)
+  //console.log('store.state.userStore.loggedUser',store.state.userStore.loggedUser)
   if (to.name !== 'Login' && !store.state.userStore.loggedUser) next({ name: 'Login' })
   else {
     document.title = process.env.VUE_APP_TITLE + ' - ' + to.name
