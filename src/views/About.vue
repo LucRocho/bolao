@@ -52,7 +52,7 @@
 </template>
 <script>
 export default {
-  name: 'Ranking',
+  name: 'About',
   data() {
       return {
         show:false

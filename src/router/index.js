@@ -83,6 +83,11 @@ const routes = [
     component: Ranking
   },
   {
+    path: '/',
+    name: 'Ranking',
+    component: Ranking
+  },
+  {
     path: '/prize',
     name: 'Prize',
     component: Prize

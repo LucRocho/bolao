@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Match',
+  name: 'Scoreboard',
   data() {
       return {
       }
