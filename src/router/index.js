@@ -79,11 +79,7 @@ const routes = [
   
   {
     path: '/ranking',
-    name: 'Ranking',
-    component: Ranking
-  },
-  {
-    path: '/',
+    alias: ['/'],
     name: 'Ranking',
     component: Ranking
   },

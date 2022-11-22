@@ -20,14 +20,15 @@
               height="200px"
             >
               <v-card-title>
-                 <span>{{user.position}} - {{user.userName}}</span>
+                 <span class="white--text font-weight-bold font-italic">{{user.position}}º</span>
               </v-card-title>
               <v-card-subtitle>
-                <span class="white--text">Pontos: {{user.points}}</span>
+                <span class="white--text">{{user.userName}}</span>
               </v-card-subtitle>
             </v-img>
 
             <v-card-actions>
+              <span class="primary--text">Pontos: {{user.points}}</span>
               <v-spacer></v-spacer>
 
               <v-btn 

@@ -49,7 +49,7 @@ export default {
         {
           color: '#1F7087',
           src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          title: 'Luciano',
+          title: 'Breve em funcionamento',
           artist: `asdfasdfas asdfasdfa sdfasdfasd fasdf asdf asdfasdf
           asdfasdfasdf
           a asdfasdfasdfasdfa ad asdfasd fasdf
@@ -58,7 +58,16 @@ export default {
         {
           color: '#952175',
           src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-          title: 'Raul',
+          title: 'Breve...',
+          artist: `asdfasdfas asdfasdfa sdfasdfasd fasdf asdf asdfasdf
+          asdfasdfasdf
+          a asdfasdfasdfasdfa ad asdfasd fasdf
+          asdfasdfasdfasdfasdfasdf`,
+        },
+        {
+          color: '#1F7087',
+          src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
+          title: 'Breve...',
           artist: `asdfasdfas asdfasdfa sdfasdfasd fasdf asdf asdfasdf
           asdfasdfasdf
           a asdfasdfasdfasdfa ad asdfasd fasdf

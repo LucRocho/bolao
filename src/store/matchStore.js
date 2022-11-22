@@ -97,6 +97,17 @@ const matchStore = {
         })
       },
 
+      getTodayMatches({ commit }) {
+        return new Promise((resolve,reject) => {
+          dsMatch.getTodayMatches().then(response => {
+            commit('setMatchs',response.data)
+            resolve(response.data)
+          }).catch(e => {
+            reject('Erro ao consultar partidas - ' + e)
+          })
+        })
+      },
+
       getMatchsByName({ commit }, searchName){
         return new Promise((resolve,reject) => {
           dsMatch.findByName(searchName).then(response => {

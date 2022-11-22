@@ -26,7 +26,7 @@ export default {
     'no-item': require('./../components/Shared/NoItem').default    
   },
   mounted () {
-    this.$store.dispatch('getAllMatchs').then().catch(e => {
+    this.$store.dispatch('getTodayMatches').then().catch(e => {
           this.$store.commit('showSnackbar',e)
         })
   }

@@ -1,5 +1,6 @@
 import http from "./../http-common";
 import Util from './helper/util';
+import { format } from 'date-fns'
 
 class dsMatch {
   
@@ -25,6 +26,11 @@ class dsMatch {
 
   getAll(){
     return http.get(`/match`); 
+  }
+
+  getTodayMatches(){
+    let today=format(Date.now(),'yyyy-MM-dd')
+    return http.get(`/match?startDate=${today}&endDate=${today}`);
   }
 
   //
