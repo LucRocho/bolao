@@ -72,7 +72,8 @@ export default {
     let searchObj = {
       userId: this.user.idUser,
       gameId: this.idGame,
-      status:'past'
+      status:'past',
+      orderDesc:'true'
     }
     this.$store.dispatch('getGuesses',searchObj)
     .then((resp)=>{

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-subtitle-1 ml-4">
+  <div class="text-subtitle-1 ml-4 font-italic">
     {{date}}
   </div>
 </template>

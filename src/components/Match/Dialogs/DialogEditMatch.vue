@@ -20,7 +20,7 @@
               sm="4">
                 <v-select
                   :items="competitions"
-                  label="Competição*-alt"
+                  label="Competição*"
                   :rules="[rules.required]"
                   item-text="name"
                   item-value="id"
@@ -231,13 +231,20 @@ export default {
         this.$store.commit('showSnackbar','Preencha a data e hora da partida')
       }
       if (this.$refs.form.validate() && this.dateTime) {
-
-        const newDate = new Date(this.dateTime)
-        const strDateTime=format(newDate, 'yyyy-MM-dd HH:mm')
-        this.currentObject.match_datetime=strDateTime
-
-        let formData=Util.object2FormData(this.currentObject,this.$store.state.userStore.loggedUser.id)
         
+        let strDateTime=''
+        if (this.modeCreate){
+          const newDate = new Date(this.dateTime)
+          strDateTime=format(newDate, 'yyyy-MM-dd HH:mm')
+        }
+        else{
+          console.log(this.dateTime)  
+          strDateTime=this.dateTime.substr(6,4)+'-'+this.dateTime.substr(3,2)+'-'+this.dateTime.substr(0,2)+' '+this.dateTime.substr(11,5)
+        }
+        console.log(strDateTime)
+        
+        this.currentObject.match_datetime=strDateTime
+        let formData=Util.object2FormData(this.currentObject,this.$store.state.userStore.loggedUser.id)
         this.$store.dispatch('saveMatch',{ formData: formData, savedMatch: this.currentObject, modeCreate: this.modeCreate})
         .then((resp)=>{
           this.$store.commit('showSnackbar',resp)
@@ -250,7 +257,7 @@ export default {
               id_team2: '',
               score_team1:0,
               score_team2:0,
-              match_datetime:'',
+              //match_datetime:'',
               stage:'',
               groupx:'',
               competitionName:'',
@@ -259,7 +266,7 @@ export default {
               team2Name:'',
               team2Flag:''
             }
-            this.dateTime=null
+            //this.dateTime=null
             
           } else {
             this.$emit('close')

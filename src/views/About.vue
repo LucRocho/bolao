@@ -19,8 +19,17 @@
     <v-card-subtitle>
       Sistema de gerenciamento de bolões desenvolvido pela Rocho Tech
     </v-card-subtitle>
+    <v-card-subtitle>
+      Versão 1.01
+    </v-card-subtitle>
 
     <v-card-actions>
+      <v-btn
+      color="red"
+      text
+      @click="fechar">
+        Fechar
+      </v-btn>
       <v-btn
         color="orange lighten-2"
         text
@@ -57,6 +66,11 @@ export default {
       return {
         show:false
       }
+  },
+  methods:{
+    fechar(){
+      this.$router.push('Ranking')
+    }
   }
 }
 </script>

@@ -14,7 +14,7 @@ class dsGuess {
   }
 
   updateGuess(params){
-    return http.get(`/updateGuess?${Util.paramsToQueryString(params)}`);
+    return http.put(`/updateGuess?${Util.paramsToQueryString(params)}`);
   }
 
   getRanking(idGame) {
