@@ -23,9 +23,9 @@ const competitionStore = {
         else {
           state.competitions.unshift(payload.savedCompetition)
         }
-        console.log(payload.savedCompetition.active)
+        //console.log(payload.savedCompetition.active)
         if (payload.savedCompetition.active){
-          console.log(payload.savedCompetition)
+          //console.log(payload.savedCompetition)
           state.activeCompetition=payload.savedCompetition
         }
       },
