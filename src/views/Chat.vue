@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import Util from '../dataServices/helper/util'
 export default {
   name: 'Chat',
   data() {
@@ -69,8 +70,29 @@ export default {
     },
 
     sendMessage () {
-      this.resetIcon()
-      this.clearMessage()
+      if (this.message && this.message.trim()!='')
+      {
+        
+        let objChat = {
+          id:0,
+          id_game:this.idGame,
+          message:this.message
+        }
+        let formData=Util.object2FormData(objChat,this.$store.state.userStore.loggedUser.id)
+        this.$store.dispatch('saveChat',{ formData: formData, savedChat: objChat, modeCreate: true})
+        .then((resp)=>{
+            this.clearMessage()
+            this.$store.commit('showSnackbar',resp)
+            this.$emit('close')
+        }).catch(e => {
+            this.$store.commit('showSnackbar',e)
+        })
+
+        
+
+
+      }
+      
     },
     clearMessage () {
       this.message = ''

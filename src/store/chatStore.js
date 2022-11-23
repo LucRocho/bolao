@@ -11,6 +11,7 @@ const chatStore = {
       },
 
       saveChat (state, payload) {
+        
         if (!payload.modeCreate) {
           let savedChat = state.chats.filter(chat => chat.id === payload.savedChat.id)[0]
           savedChat.message = payload.savedChat.message
@@ -48,8 +49,17 @@ const chatStore = {
               if (payload.modeCreate) {
                 payload.savedChat.id=response.data["insertId"]
               }
-              commit('saveChat', payload)
-              resolve('Conversa Salva')
+              //atualiza o savedChat
+              dsChat.get(payload.savedChat.id).then(resp=>{
+                payload.savedChat=resp.data[0]
+                commit('saveChat', payload)
+                resolve('Conversa Salva')
+              }).catch(e=>{
+                reject( 'Não foi possível salvar a conversa - ' + e)
+              })
+
+
+              
             } else {
               reject( 'Não foi possível salvar a conversa - ' + responseMessage)
             }
