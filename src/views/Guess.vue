@@ -27,16 +27,20 @@ export default {
     'no-item': require('./../components/Shared/NoItem').default    
   },
   mounted () {
-    //por default abre todos os palpites dos últimos 2 dias para frente.
+    //ANTIGO:por default abre todos os palpites dos últimos 2 dias para frente.
+    //por default abre todos os palpites futuro
     this.$store.dispatch('getActiveGamesUser',this.$store.state.userStore.loggedUser.id).then(resp=>{
         let games = resp
         let id_game=games[0].id
+        /*
         var today = new Date();
         today.setDate(today.getDate() - 2);
         const startDate = format(today,'yyyy-MM-dd');
+        */
         const objSearch={
           gameId:id_game,
-          startDate:startDate,
+          //startDate:startDate,
+          status:'future',
           userId: this.$store.state.userStore.loggedUser.id}
         this.$store.dispatch('getGuesses',objSearch).then().catch(err => {
           this.$store.commit('showSnackbar',err)
