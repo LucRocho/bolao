@@ -76,7 +76,7 @@ export default {
         let objChat = {
           id:0,
           id_game:this.idGame,
-          message:this.message
+          message:this.message.substr(0,999)
         }
         let formData=Util.object2FormData(objChat,this.$store.state.userStore.loggedUser.id)
         this.$store.dispatch('saveChat',{ formData: formData, savedChat: objChat, modeCreate: true})

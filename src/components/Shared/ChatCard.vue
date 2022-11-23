@@ -103,7 +103,7 @@ export default {
 
     niceDate (value) {
       const newDate = new Date(value)
-      newDate.setHours(newDate.getHours()+3)
+      //newDate.setHours(newDate.getHours()+3)
       return format(newDate, 'd MMM yyyy HH:mm', { locale: ptBR })
     }
 
