@@ -2,27 +2,25 @@
 <div>
   <v-row dense>
     <v-col
-      v-for="(item, i) in items"
+      v-for="(chat, i) in $store.state.chatStore.chats"
       :key="i"
       cols="12"
     >
       <v-card
-        :color="item.color"
+        color="#1F7087"
         dark
       >
         <div class="d-flex flex-no-wrap justify-space-between">
           <div>
             <v-card-title
-              class="text-h5"
-              v-text="item.title"
+              class="text-h6"
+              v-text="chat.name"
             ></v-card-title>
-
-            <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-
+            <v-card-subtitle v-text="chat.message"></v-card-subtitle>
             <v-card-actions>
-              <span>
-                01/10/2021 12:23
-              </span>
+              <h6>
+                <div class="font-weight-light pa-2">{{chat.creation_date | niceDate}}</div>
+              </h6>
               
             </v-card-actions>
           </div>
@@ -32,7 +30,7 @@
             size="125"
             tile
           >
-            <v-img :src="item.src"></v-img>
+            <v-img :src="chat.photo"></v-img>
           </v-avatar>
         </div>
       </v-card>
@@ -42,6 +40,8 @@
 </template>
 
 <script>
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 export default {
   data () {
     return {
@@ -84,6 +84,16 @@ export default {
   },
   components: {
     
+  },
+  props: ['idGame'],
+  filters: {
+
+    niceDate (value) {
+      const newDate = new Date(value)
+      newDate.setHours(newDate.getHours()+3)
+      return format(newDate, 'd MMM yyyy HH:mm', { locale: ptBR })
+    }
+
   },
   mounted() {
     
