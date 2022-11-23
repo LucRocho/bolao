@@ -41,7 +41,7 @@
         <v-row>
           <div class="text-h6 ml-4 font-italic">{{$store.state.competitionStore.activeCompetition?$store.state.competitionStore.activeCompetition.name:'Sem competição ativa'}}</div>
           <v-spacer/>
-          <v-avatar size="40" class="mb-1">
+          <v-avatar size="50" class="mr-2">
             <img  v-if="$store.state.competitionStore.activeCompetition.logo" :src="$store.state.competitionStore.activeCompetition.logo">
           </v-avatar>
         </v-row>
