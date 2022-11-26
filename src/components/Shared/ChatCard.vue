@@ -9,10 +9,24 @@
               class="text-h6"
               v-text="this.chat.name"
             ></v-card-title>
-            <v-card-subtitle v-if="this.chat.id_chat_original" class="font-italic font-weight-thin"> 
+            <v-card-subtitle v-if="this.chat.id_chat_original && !this.chat.imageOriginal" class="font-italic font-weight-thin"> 
               {{this.chat.originalMessage}} - enviado por {{this.chat.originalUserName}} em {{this.chat.originalDate | niceDate}}
             </v-card-subtitle>
-            <v-card-subtitle v-text="this.chat.message"></v-card-subtitle>
+            <v-card-subtitle v-if="this.chat.id_chat_original && this.chat.imageOriginal"> 
+              <v-img
+                :src="this.chat.imageOriginal"
+                max-height="150"
+                max-width="150"
+              ></v-img>
+            </v-card-subtitle>
+            <v-card-subtitle v-if="!this.chat.chat_image" v-text="this.chat.message"></v-card-subtitle>
+            <v-card-subtitle v-else>
+              <v-img
+                :src="this.chat.chat_image"
+                max-height="150"
+                max-width="150"
+              ></v-img>
+            </v-card-subtitle>
             <v-card-actions>
               <h6>
                 <div class="font-weight-light pa-2">{{this.chat.creation_date | niceDate}}</div>
@@ -114,7 +128,7 @@
 
           <v-avatar
             class="ma-3"
-            size="125"
+            size="100"
             tile
           >
             <v-img :src="this.chat.photo"></v-img>

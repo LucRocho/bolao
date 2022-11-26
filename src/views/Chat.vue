@@ -10,16 +10,78 @@
       <v-text-field
               v-model="message"
               :append-outer-icon="message ? 'mdi-send' : 'mdi-send'"
+              prepend-icon="mdi-paperclip"
               filled
               clear-icon="mdi-close-circle"
               clearable
               label="Mensagem"
               type="text"
               @click:append-outer="sendMessage"
+              @click:prepend="openDialog"
               @click:clear="clearMessage"
         >
         </v-text-field>
+        <!--
+        <v-file-input
+          chips
+          small-chips
+          truncate-length="15"
+          accept="image/*"
+          v-model="imageFile"
+          @change="onFileSelected"
+        ></v-file-input>
+        -->
     </p>
+
+
+    <v-row justify="center">
+      <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="290"
+      >
+
+<v-form ref="form" lazy-validation @submit.prevent="sendImage">
+
+        <v-card>
+          <v-card-title class="text-h5">
+            Envio de imagem
+          </v-card-title>
+          <v-card-text>
+            <v-file-input
+              chips
+              small-chips
+              truncate-length="15"
+              accept="image/*"
+              v-model="imageFile"
+              @change="onFileSelected"
+            ></v-file-input>
+            <v-img
+              :src="fileName"
+            ></v-img>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="green darken-1"
+              text
+              @click="dialog = false"
+            >
+              Cancelar
+            </v-btn>
+            <v-btn
+              v-if="this.imageFile && this.imageFile.name!=''"
+              color="green darken-1"
+              text
+              @click="sendImage"
+            >
+              Enviar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+        </v-form>
+      </v-dialog>
+    </v-row>
         
     
     <v-container fluid>
@@ -38,10 +100,10 @@ export default {
   data() {
       return {
         idGame:0,
-
-        show: false,
         message: 'Fala viado!',
-        
+        imageFile:null,
+        dialog:false,
+        fileName:''
        
     }
       
@@ -69,16 +131,41 @@ export default {
         })
     },
 
+    onFileSelected(){
+      if (this.imageFile){
+        this.createImage(this.imageFile);
+      }
+        
+    },
+
+    createImage(file) {
+      const reader = new FileReader();
+      
+      reader.onload = (e) => {
+        this.fileName = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+
+    sendImage(){
+      this.sendMessage()
+      this.dialog=false
+    },
+
     sendMessage () {
-      if (this.message && this.message.trim()!='')
+      if ((this.message && this.message.trim()!='') || this.imageFile)
       {
         
         let objChat = {
           id:0,
           id_game:this.idGame,
-          message:this.message.substr(0,999)
+          message:this.message.substr(0,999),
+          chat_image:(this.imageFile?this.imageFile.name:'')
         }
         let formData=Util.object2FormData(objChat,this.$store.state.userStore.loggedUser.id)
+        if (this.imageFile) {
+          formData.set('chat_image',this.imageFile,objChat.chat_image)
+        }
         this.$store.dispatch('saveChat',{ formData: formData, savedChat: objChat, modeCreate: true})
         .then((resp)=>{
             this.clearMessage()
@@ -96,6 +183,11 @@ export default {
     },
     clearMessage () {
       this.message = ''
+    },
+
+    openDialog(){
+      this.imageFile=null
+      this.dialog=true
     },
     
 

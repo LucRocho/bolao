@@ -11,7 +11,6 @@
       src="grass.jpg"
       height="200px"
     ></v-img>
-
     <v-card-title>
       Bolão Digital
     </v-card-title>
@@ -20,9 +19,8 @@
       Sistema de gerenciamento de bolões desenvolvido pela Rocho Tech
     </v-card-subtitle>
     <v-card-subtitle>
-      Versão 1.05
+      Versão 1.06
     </v-card-subtitle>
-
     <v-card-actions>
       <v-btn
       color="red"
@@ -64,13 +62,13 @@ export default {
   name: 'About',
   data() {
       return {
-        show:false
+        show:false,
       }
   },
   methods:{
     fechar(){
       this.$router.push('Ranking')
-    }
+    },
   }
 }
 </script>

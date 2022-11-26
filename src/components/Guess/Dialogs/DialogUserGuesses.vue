@@ -88,7 +88,7 @@ export default {
     }
     this.$store.dispatch('getGuesses',searchObj)
     .then((resp)=>{
-      setTimeout(this.carregandoFalse, 1000);
+      setTimeout(this.carregandoFalse, 500);
       this.listUserGuesses=resp
     }).catch(e => {
       this.$store.commit('showSnackbar',e)
