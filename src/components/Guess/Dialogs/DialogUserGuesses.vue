@@ -12,24 +12,34 @@
         <v-card-title>
           <span class="text-h5 primary--text">Palpites de {{user.userName}}</span>
         </v-card-title>
-        <v-card-text v-if="listUserGuesses.length">
-          <v-list
-            flat
-            class="pt-0"
-            three-line
-          >
-            <guess
-                v-for="guess in listUserGuesses"
-                :key="guess.idGuess"
-                :guess="guess"
-            />
-          </v-list>
-        </v-card-text>
-        <v-card-text v-else>
-          <span class="red--text">
-            Esse usuário não possui nenhum palpite de jogo já iniciado.
-          </span>
-        </v-card-text>
+        <span v-if="this.carregando">
+          <v-skeleton-loader
+            class="mx-auto"
+            max-width="300"
+            type="card"
+          ></v-skeleton-loader>
+        </span>
+        <span v-else>
+          <v-card-text v-if="listUserGuesses.length">
+            <v-list
+              flat
+              class="pt-0"
+              three-line
+            >
+              <guess
+                  v-for="guess in listUserGuesses"
+                  :key="guess.idGuess"
+                  :guess="guess"
+              />
+            </v-list>
+          </v-card-text>
+          <v-card-text v-else>
+            <span class="red--text">
+              Esse usuário não possui nenhum palpite de jogo já iniciado.
+            </span>
+          </v-card-text>
+        </span>
+        
         
       </v-card>
     </v-dialog>
@@ -60,7 +70,8 @@ export default {
     return {
       listUserGuesses:[],
       timeout:-1,
-      snackbar:true
+      snackbar:true,
+      carregando:true
     }
   },
 
@@ -77,6 +88,7 @@ export default {
     }
     this.$store.dispatch('getGuesses',searchObj)
     .then((resp)=>{
+      setTimeout(this.carregandoFalse, 1000);
       this.listUserGuesses=resp
     }).catch(e => {
       this.$store.commit('showSnackbar',e)
@@ -85,7 +97,9 @@ export default {
   },
 
   methods: {
-    
+    carregandoFalse (){
+      this.carregando=false
+    },
   }
 }
 </script>
