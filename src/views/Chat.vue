@@ -183,6 +183,8 @@ export default {
     },
     clearMessage () {
       this.message = ''
+      this.fileName=''
+      this.imageFile=null
     },
 
     openDialog(){
