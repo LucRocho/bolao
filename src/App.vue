@@ -29,6 +29,38 @@
         <v-row>
           <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
+          <v-btn
+            dark
+            icon
+            @click="goToChat"
+          >
+            <v-icon>mdi-chat</v-icon>
+          </v-btn>
+          <v-badge
+            v-if="1!=2"
+            bottom
+            color="info"
+            content='New'
+            overlap
+            offset-x="25"
+            offset-y="25"
+            
+          >
+            <v-btn
+              dark
+              icon
+              @click="goToChat"
+            >
+              <v-icon>mdi-chat</v-icon>
+            </v-btn>
+          </v-badge>
+          <v-btn
+            dark
+            icon
+            @click="goToRanking"
+          >
+            <v-icon>mdi-order-numeric-ascending</v-icon>
+          </v-btn>
           <settings-menu
             v-if="$store.state.userStore.loggedUser.administrator"
           />
@@ -77,7 +109,13 @@ export default {
     
   },
   methods: {
-   
+    goToChat(){
+      this.$router.push('Chat').catch(()=>{})
+    },
+    goToRanking(){
+      this.$router.push('Ranking').catch(()=>{})
+    },
+    
   }
 }
 </script>

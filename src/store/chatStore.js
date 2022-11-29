@@ -2,7 +2,8 @@ import dsChat from './../dataServices/dsChat'
 const chatStore = {
 
     state: {
-      chats: []
+      chats: [],
+      novaMensagem: false,
     },
 
     mutations: {
@@ -23,6 +24,11 @@ const chatStore = {
       
       setChats(state, newChats) {
         state.chats=newChats
+      },
+
+      setNovaMensagem(state, newNovaMensagem) {
+        state.novaMensagem=newNovaMensagem
+        
       }
     },
 
@@ -74,6 +80,18 @@ const chatStore = {
             resolve(response.data)
           }).catch(e => {
             reject('Erro ao consultar conversas - ' + e)
+          })
+        })
+      },
+
+      getNewMessage({ commit },payload) {
+        
+        return new Promise((resolve,reject) => {
+          dsChat.getNewMessage(payload).then(response => {
+            commit('setNovaMensagem',response.data.newMessage)
+            resolve(response.data)
+          }).catch(e => {
+            reject('Erro ao consultar notificações - ' + e)
           })
         })
       },

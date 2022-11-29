@@ -1,4 +1,5 @@
 import http from "./../http-common";
+import Util from './helper/util';
 
 class dsChat {
   
@@ -19,8 +20,14 @@ class dsChat {
   }
 
   
-  getAll(idGame){
-    return http.get(`/chats/${idGame}`);
+  getAll(params){
+    return http.get(`/chats?${Util.paramsToQueryString(params)}`);
+    
+  }
+
+  getNewMessage(params){
+    return http.get(`/chats/newmessage?${Util.paramsToQueryString(params)}`);
+    
   }
 
   

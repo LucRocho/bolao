@@ -35,13 +35,11 @@ class util {
     }
 
     formatStringDateDDMMYYYY2YYYYMMDD(strDate){
-        console.log(strDate)
         const year=strDate.substring(5,4)
         const day=strDate.substring(0,2)
         const month=strDate.substring(3,2)
         const time=(strDate.length>10?strDate.substring(10):'')
         const ret = year+'-'+month+'-'+day + time
-        console.log(ret)
         return ret
     }
 

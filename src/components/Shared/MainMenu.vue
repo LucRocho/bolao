@@ -26,10 +26,10 @@ export default {
   data () {
     return {
       items: [
-        { title: 'Palpites', icon: 'mdi-scoreboard', to: '/guesses', click(){} },
         { title: 'Ranking', icon: 'mdi-order-numeric-ascending', to: '/ranking', click(){}  },
-        { title: 'Premiação', icon: 'mdi-cash-multiple', to: '/prize', click(){}  },
+        { title: 'Palpites', icon: 'mdi-scoreboard', to: '/guesses', click(){} },
         { title: 'Mural', icon: 'mdi-chat', to: '/chat', click(){}  },
+        { title: 'Premiação', icon: 'mdi-cash-multiple', to: '/prize', click(){}  },
         { title: 'Perfil', icon: 'mdi-account', to: '/profile', click(){this.$root.$emit('openProfile')}  },
         { title: 'Sobre', icon: 'mdi-information', to: '/about', click(){}  },
         { title: 'Sair', icon: 'mdi-exit-to-app', to: '/login' ,click () {this.$store.commit('setLoggedUser',null)} }

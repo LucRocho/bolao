@@ -126,7 +126,12 @@ export default {
       //console.log(selectedIdGame)
       this.idGame=selectedIdGame
 
-      this.$store.dispatch('getAllChats',this.idGame).then().catch(e => {
+      const objSearch={
+          idGame:this.idGame,
+          idUser: this.$store.state.userStore.loggedUser.id
+      }
+      
+      this.$store.dispatch('getAllChats',objSearch).then().catch(e => {
           this.$store.commit('showSnackbar',e)
         })
     },

@@ -19,7 +19,7 @@
       Sistema de gerenciamento de bolões desenvolvido pela Rocho Tech
     </v-card-subtitle>
     <v-card-subtitle>
-      Versão 1.07
+      Versão 1.08
     </v-card-subtitle>
     <v-card-actions>
       <v-btn
@@ -67,7 +67,7 @@ export default {
   },
   methods:{
     fechar(){
-      this.$router.push('Ranking')
+      this.$router.push('Ranking').catch(()=>{})
     },
   }
 }

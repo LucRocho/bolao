@@ -238,10 +238,8 @@ export default {
           strDateTime=format(newDate, 'yyyy-MM-dd HH:mm')
         }
         else{
-          console.log(this.dateTime)  
           strDateTime=this.dateTime.substr(6,4)+'-'+this.dateTime.substr(3,2)+'-'+this.dateTime.substr(0,2)+' '+this.dateTime.substr(11,5)
         }
-        console.log(strDateTime)
         
         this.currentObject.match_datetime=strDateTime
         let formData=Util.object2FormData(this.currentObject,this.$store.state.userStore.loggedUser.id)

@@ -2,7 +2,8 @@ import dsGame from './../dataServices/dsGame'
 const gameStore = {
 
     state: {
-      games: []
+      games: [],
+      selectedGame:null,
     },
 
     mutations: {
@@ -40,7 +41,12 @@ const gameStore = {
       
       setGames(state, newGames) {
         state.games=newGames
+      },
+
+      setSelectedGame(state,newSelectedGame){
+        state.selectedGame=newSelectedGame
       }
+
     },
 
     actions: {
@@ -196,6 +202,12 @@ const gameStore = {
             }
           })
         })
+      },
+
+      setSelectedGame({commit},idGame){
+        if (idGame && idGame!=0){
+          commit('setSelectedGame', idGame)
+        }
       },
 
       toogleGamePaid({commit},idGameUser) {

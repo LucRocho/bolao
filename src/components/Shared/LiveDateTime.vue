@@ -13,6 +13,7 @@ export default {
       date: ''
     }
   },
+  
   methods: {
     getDate () {
       this.date = format(new Date(), 'd MMM H:mm:ss', { locale: ptBR })
