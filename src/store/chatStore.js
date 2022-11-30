@@ -28,7 +28,7 @@ const chatStore = {
 
       setNovaMensagem(state, newNovaMensagem) {
         state.novaMensagem=newNovaMensagem
-        
+        //console.log('newmessage',newNovaMensagem)
       }
     },
 

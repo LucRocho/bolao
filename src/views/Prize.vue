@@ -124,8 +124,7 @@ export default {
     }
   },
   mounted () {
-    
-    this.$store.dispatch('getActiveGamesUser',this.$store.state.userStore.loggedUser.id).then(resp=>{
+      this.$store.dispatch('getActiveGamesUser',this.$store.state.userStore.loggedUser.id).then(resp=>{
         let games = resp
         let idGame=games[0].id
         this.$store.dispatch('getGameValues',idGame)

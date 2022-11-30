@@ -30,6 +30,7 @@
           <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
           <v-btn
+            v-if="!$store.state.chatStore.novaMensagem"
             dark
             icon
             @click="goToChat"
@@ -37,10 +38,11 @@
             <v-icon>mdi-chat</v-icon>
           </v-btn>
           <v-badge
-            v-if="1!=2"
+
+            v-if="$store.state.chatStore.novaMensagem"
             bottom
-            color="info"
-            content='New'
+            color="error"
+            icon="mdi-bell"
             overlap
             offset-x="25"
             offset-y="25"
@@ -94,11 +96,38 @@
 export default {
   data () {
     return {
-      drawer: null
+      drawer: null,
+      connection:null,
     }
   },
   mounted  () {
+    
     this.$store.dispatch('getActiveCompetition').then()
+
+    console.log("Starting connection to WebSocket Server")
+    this.connection = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? 'rocho.com.br' : 'localhost'}:7071/`)
+    
+
+    this.connection.onopen = function(event) {
+      console.log(event)
+      console.log("Successfully connected to the echo websocket server...")
+    }
+    let vm = this;
+    this.connection.onmessage = function(event) {
+      const mensagem = JSON.parse(event.data)
+      //console.log('mensagem recebida',mensagem)
+      if (mensagem.message=='mensagensLidas'  && mensagem.user==vm.$store.state.userStore.loggedUser.id ){
+        //console.log('MensagemLida',mensagem);
+        vm.$store.commit('setNovaMensagem',0)  
+      }
+      if (mensagem.message=='novaMensagem'  && mensagem.user!=vm.$store.state.userStore.loggedUser.id ){
+        //console.log('NovaMensagem',mensagem);
+        vm.$store.commit('setNovaMensagem',1)  
+      }
+    }
+
+    
+
   },
   components: {
     snackbar: require('./components/Shared/Snackbar').default,

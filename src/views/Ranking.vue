@@ -87,16 +87,16 @@ export default {
       this.selectedUser=user
       this.dialogs.guess=true
     },
+
     inicializaNotificacao(){
       
-      /*
       this.$store.dispatch('getNewMessage',
                   {
                     idGame:this.$store.state.gameStore.selectedGame,
                     idUser: this.$store.state.userStore.loggedUser.id
                   }
                 )
-      */
+      
 
       /*          
       setTimeout(this.$store.dispatch('getNewMessage',
@@ -106,9 +106,7 @@ export default {
                   }
                 ), 5000)
       */
-
-     
-    }
+    },
 
   },
   mounted () {
@@ -119,7 +117,7 @@ export default {
         this.$store.dispatch('getRanking',{idGame:this.idGame})
         .then(response=>{
           this.ranking=response
-          //this.inicializaNotificacao()
+          this.inicializaNotificacao()
         }).catch((e)=>{
             this.$store.commit('showSnackbar',e)
         })

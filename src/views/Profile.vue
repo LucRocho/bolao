@@ -107,6 +107,7 @@ export default {
     },
 
     mounted()  {
+      
        this.$root.$on('openProfile',()=>{
          this.dialog = true
          let user = Object.assign({},this.$store.state.userStore.loggedUser)
