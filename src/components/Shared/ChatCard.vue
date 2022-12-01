@@ -29,7 +29,7 @@
             </v-card-subtitle>
             <v-card-actions>
               <h6>
-                <div class="font-weight-light pa-2">{{this.chat.creation_date | niceDate}}</div>
+                <div class="font-weight-light pa-2">{{this.chat.creation_date | niceDate }}</div>
               </h6>
               <v-dialog
                 v-if="$store.state.userStore.loggedUser.name==this.chat.name || $store.state.userStore.loggedUser.administrator"
@@ -196,7 +196,6 @@ export default {
 
     niceDate (value) {
       const newDate = new Date(value)
-      //newDate.setHours(newDate.getHours()+3)
       return format(newDate, 'd MMM yyyy HH:mm', { locale: ptBR })
     }
 

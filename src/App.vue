@@ -97,12 +97,14 @@ export default {
   data () {
     return {
       drawer: null,
-      connection:null,
+      //connection:null,
     }
   },
   mounted  () {
     
     this.$store.dispatch('getActiveCompetition').then()
+
+    /*
 
     console.log("Starting connection to WebSocket Server")
     this.connection = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? 'rocho.com.br' : 'localhost'}:7071/`)
@@ -125,7 +127,7 @@ export default {
         vm.$store.commit('setNovaMensagem',1)  
       }
     }
-
+    */
     
 
   },
