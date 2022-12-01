@@ -105,7 +105,7 @@ export default {
     this.$store.dispatch('getActiveCompetition').then()
 
     
-
+    /*
     this.connection = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? 'rocho.com.br' : 'localhost'}:7071/`)
     this.connection.onopen = function(event) {
       console.log(event)
@@ -121,6 +121,7 @@ export default {
         vm.$store.commit('setNovaMensagem',1)  
       }
     }
+    */
     
     
 
