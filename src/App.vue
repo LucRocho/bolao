@@ -97,37 +97,31 @@ export default {
   data () {
     return {
       drawer: null,
-      //connection:null,
+      connection:null,
     }
   },
   mounted  () {
     
     this.$store.dispatch('getActiveCompetition').then()
 
-    /*
-
-    console.log("Starting connection to WebSocket Server")
-    this.connection = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? 'rocho.com.br' : 'localhost'}:7071/`)
     
 
+    this.connection = new WebSocket(`ws://${process.env.NODE_ENV === 'production' ? 'rocho.com.br' : 'localhost'}:7071/`)
     this.connection.onopen = function(event) {
       console.log(event)
-      console.log("Successfully connected to the echo websocket server...")
+      console.log("Conectado ao websocket server...")
     }
     let vm = this;
     this.connection.onmessage = function(event) {
       const mensagem = JSON.parse(event.data)
-      //console.log('mensagem recebida',mensagem)
       if (mensagem.message=='mensagensLidas'  && mensagem.user==vm.$store.state.userStore.loggedUser.id ){
-        //console.log('MensagemLida',mensagem);
         vm.$store.commit('setNovaMensagem',0)  
       }
       if (mensagem.message=='novaMensagem'  && mensagem.user!=vm.$store.state.userStore.loggedUser.id ){
-        //console.log('NovaMensagem',mensagem);
         vm.$store.commit('setNovaMensagem',1)  
       }
     }
-    */
+    
     
 
   },
