@@ -46,6 +46,7 @@
             overlap
             offset-x="25"
             offset-y="25"
+            @click.native="goToChat"
             
           >
             <v-btn
