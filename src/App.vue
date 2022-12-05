@@ -101,6 +101,7 @@ export default {
       connection:null,
     }
   },
+  
   mounted  () {
     
     this.$store.dispatch('getActiveCompetition').then()
@@ -119,14 +120,19 @@ export default {
         vm.$store.commit('setNovaMensagem',0)  
       }
       if (mensagem.message=='novaMensagem'  && mensagem.user!=vm.$store.state.userStore.loggedUser.id ){
-        vm.$store.commit('setNovaMensagem',1)  
+        vm.$store.commit('setNovaMensagem',1)
+        vm.$store.commit('showSnackbar','Nova mensagem postada no mural')  
+      }
+      if (mensagem.message=='atualizacaoPlacar'){
+        if (vm.$store.state.gameStore.selectedGame){
+          vm.$store.dispatch('getRanking',{idGame:vm.$store.state.gameStore.selectedGame})
+        }
+        vm.$store.commit('showSnackbar',mensagem.text)  
       }
     }
     */
-    
-    
-
   },
+
   components: {
     snackbar: require('./components/Shared/Snackbar').default,
     'live-date-time': require('./components/Shared/LiveDateTime').default,

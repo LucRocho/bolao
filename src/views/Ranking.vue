@@ -7,7 +7,7 @@
     <v-container fluid>
       <v-row dense>
         <v-col
-          v-for="user in ranking"
+          v-for="user in $store.state.guessStore.ranking"
           :key="user.idUser"
           :cols="12"
           :sm="4"
@@ -60,7 +60,7 @@ export default {
   name: 'Ranking',
   data() {
       return {
-        ranking:[],
+        //ranking:[],
         idGame:0,
         selectedUser:null,
         dialogs:{
@@ -76,9 +76,9 @@ export default {
     changeGame(idGame){
       this.$store.dispatch('setSelectedGame',this.idGame)
       this.$store.dispatch('getRanking',{idGame:idGame})
-        .then(response=>{
+        .then((/*response*/)=>{
           this.idGame=idGame
-          this.ranking=response
+          //this.ranking=response
         }).catch((e)=>{
             this.$store.commit('showSnackbar',e)
         })
@@ -97,15 +97,6 @@ export default {
                   }
                 )
       
-
-      /*          
-      setTimeout(this.$store.dispatch('getNewMessage',
-                  {
-                    idGame:this.$store.state.gameStore.selectedGame,
-                    idUser: this.$store.state.userStore.loggedUser.id
-                  }
-                ), 5000)
-      */
     },
 
   },
@@ -115,8 +106,8 @@ export default {
         this.idGame=games[0].id
         this.$store.dispatch('setSelectedGame',this.idGame)
         this.$store.dispatch('getRanking',{idGame:this.idGame})
-        .then(response=>{
-          this.ranking=response
+        .then((/*response*/)=>{
+          //this.ranking=response
           this.inicializaNotificacao()
         }).catch((e)=>{
             this.$store.commit('showSnackbar',e)

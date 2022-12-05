@@ -2,7 +2,8 @@ import dsGuess from './../dataServices/dsGuess'
 const guessStore = {
 
     state: {
-      guesses: []
+      guesses: [],
+      ranking: [],
     },
 
     mutations: {
@@ -18,7 +19,11 @@ const guessStore = {
 
       cleanGuesses(state){
         state.guesses=[]
-      }
+      },
+
+      setRanking(state,newRanking){
+        state.ranking=newRanking
+      },
     },
 
     actions: {
@@ -48,7 +53,8 @@ const guessStore = {
       getRanking({commit},payload){
         return new Promise((resolve,reject) => {
           dsGuess.getRanking(payload.idGame).then((response) => {
-            commit('ok')
+            //commit('ok')
+            commit('setRanking',response.data)
             resolve(response.data)
           }).catch(e => {
             reject('Erro ao recuperar o ranking - ' + e)

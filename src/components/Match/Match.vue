@@ -183,9 +183,11 @@ export default {
         idMatch:this.match.id,
         scoreTeam1:this.match.score_team1,
         scoreTeam2:this.match.score_team2,
-        idUser:this.$store.state.userStore.loggedUser.id
+        idUser:this.$store.state.userStore.loggedUser.id,
+        nameTeam1:this.match.team1Name,
+        nameTeam2:this.match.team2Name
+
       }
-      //let formData=Util.object2FormData(payload,this.$store.state.userStore.loggedUser.id)
       this.$store.dispatch('updateScore',{ newScore })
         .then((resp)=>{
           this.$store.commit('showSnackbar',resp)
